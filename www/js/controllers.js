@@ -29,5 +29,10 @@ angular.module('starter.controllers', [])
     console.log(error);
   });
 
+})
+
+.controller('ProductCreateCtrl', function($scope, Products) {
 });
 
+.controller('ProductEditCtrl', function($scope, $stateParams, Products) {
+});
