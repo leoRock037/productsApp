@@ -11,13 +11,23 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.products = Products.all();
+  Products.all().then(function(response){
+    $scope.products = response.data;
+  }, function(error) {
+    console.log(error);
+  });
+
   $scope.remove = function(product) {
     Products.remove(product);
   };
 })
 
 .controller('ProductDetailCtrl', function($scope, $stateParams, Products) {
-  $scope.product = Products.get($stateParams.productId);
+  Products.get($stateParams.productId).then(function(response) {
+    $scope.product = response.data;
+  }, function(error) {
+    console.log(error);
+  });
+
 });
 
