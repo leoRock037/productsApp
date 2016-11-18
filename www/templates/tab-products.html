@@ -1,14 +1,15 @@
 <ion-view view-title="Products">
   <ion-content>
-    <button class="button button-large button-positive" href="#/tab/products/new" >
-      Large Button
-    </button>
+    <ion-item href="#/tab/products/new">
+      <button class="button button-large button-positive">
+        Large Button
+      </button>
+    </ion-item>
 
     <ion-list>
       <ion-item class="item-remove-animate" ng-repeat="product in products" type="item-text-wrap" href="#/tab/products/{{product.Id}}">
         <h2>{{product.Name}}</h2>
       </ion-item>
     </ion-list>
-
   </ion-content>
 </ion-view>

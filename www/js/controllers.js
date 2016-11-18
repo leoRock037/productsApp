@@ -13,6 +13,7 @@ angular.module('starter.controllers', [])
 
   Products.all().then(function(response){
     $scope.products = response.data;
+    console.log(response)
   },
   function(error) {
     console.log(error);
@@ -46,17 +47,19 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ProductEditCtrl', function($scope, $stateParams, Products) {
+.controller('ProductEditCtrl', function($scope, $stateParams, $state, Products) {
 
   Products.get($stateParams.productId)
   .then(function(response){
     $scope.product = response.data;
+    console.log(response);
   });
 
   $scope.edit = function() {
-    Products.create($stateParams.productId, $scope.product)
+    Products.edit($stateParams.productId, $scope.product)
     .then(function() {
       console.log("product was edited successfully")
+      $state.transitionTo('tab.product-detail', {productId: $stateParams.productId}, {reload: true, cache: false});
     },
     function(error) {
       console.log(error);

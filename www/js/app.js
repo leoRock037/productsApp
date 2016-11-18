@@ -57,6 +57,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    .state('tab.product-create', {
+      url:'/products/new',
+      views: {
+        'tab-products': {
+          templateUrl: 'templates/product-create.html',
+          controller: 'ProductCreateCtrl'
+        }
+      }
+    })
     .state('tab.product-detail', {
       url: '/products/:productId',
       views: {
@@ -66,19 +75,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-    .state('tab.product-create', {
-      url:'/products/new',
-      views: {
-        'tab-products-create': {
-          templateUrl: 'templates/product-create.html',
-          controller: 'ProductCreateCtrl'
-        }
-      }
-    })
     .state('tab.product-edit', {
-      url:'/products/edit',
+      url:'/products/edit/:productId',
       views: {
-        'tab-products-edit': {
+        'tab-products': {
           templateUrl: 'templates/product-edit.html',
           controller: 'ProductEditCtrl'
         }
