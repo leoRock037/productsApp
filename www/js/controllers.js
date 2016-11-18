@@ -13,26 +13,53 @@ angular.module('starter.controllers', [])
 
   Products.all().then(function(response){
     $scope.products = response.data;
-  }, function(error) {
+  },
+  function(error) {
     console.log(error);
   });
-
-  $scope.remove = function(product) {
-    Products.remove(product);
-  };
 })
 
 .controller('ProductDetailCtrl', function($scope, $stateParams, Products) {
   Products.get($stateParams.productId).then(function(response) {
     $scope.product = response.data;
-  }, function(error) {
+  },
+  function(error) {
     console.log(error);
   });
-
 })
 
 .controller('ProductCreateCtrl', function($scope, Products) {
-});
+  $scope.product = {
+    Name: '',
+    Description: '',
+    Price: 0
+  };
+
+  $scope.create = function() {
+    Products.create($scope.product)
+    .then(function() {
+      console.log("product was created successfully")
+    },
+    function(error) {
+      console.log(error);
+    });
+  }
+})
 
 .controller('ProductEditCtrl', function($scope, $stateParams, Products) {
+
+  Products.get($stateParams.productId)
+  .then(function(response){
+    $scope.product = response.data;
+  });
+
+  $scope.edit = function() {
+    Products.create($stateParams.productId, $scope.product)
+    .then(function() {
+      console.log("product was edited successfully")
+    },
+    function(error) {
+      console.log(error);
+    });
+  }
 });
