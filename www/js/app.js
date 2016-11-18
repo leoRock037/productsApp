@@ -38,6 +38,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     templateUrl: 'templates/tabs.html'
   })
 
+  .state('tab.dash', {
+    url: '/dash',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/tab-dash.html',
+        controller: 'DashCtrl'
+      }
+    }
+  })
+
   .state('tab.products', {
       url: '/products',
       views: {
@@ -57,7 +67,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
     .state('tab.product-create', {
-      url:'/product/new',
+      url:'/products/new',
       views: {
         'tab-products-create': {
           templateUrl: 'templates/product-create.html',
@@ -66,7 +76,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
     .state('tab.product-edit', {
-      url:'/product/new',
+      url:'/products/edit',
       views: {
         'tab-products-edit': {
           templateUrl: 'templates/product-edit.html',
