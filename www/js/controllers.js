@@ -9,9 +9,10 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //
   $scope.$on('$ionicView.enter', function(e) {
+    $scope.products = [];
+
     Products.all().then(function(response){
       $scope.products = response.data;
-      console.log(response)
     },
     function(error) {
       console.log(error);

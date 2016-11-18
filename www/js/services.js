@@ -3,7 +3,8 @@ angular.module('starter.services', [])
 .factory('Products', function($http) {
   // Might use a resource here that returns a JSON array
 
-  var ENDPOINT_URL = 'http://localhost:8080/v1/products/';
+  //var ENDPOINT_URL = 'http://localhost:8080/v1/products/';
+  var ENDPOINT_URL = 'https://products-api-jegarma.c9users.io/v1/products/';
 
   return {
     all: function() {
