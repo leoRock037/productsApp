@@ -8,28 +8,29 @@ angular.module('starter.controllers', [])
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
   //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  Products.all().then(function(response){
-    $scope.products = response.data;
-    console.log(response)
-  },
-  function(error) {
-    console.log(error);
+  $scope.$on('$ionicView.enter', function(e) {
+    Products.all().then(function(response){
+      $scope.products = response.data;
+      console.log(response)
+    },
+    function(error) {
+      console.log(error);
+    });
   });
 })
 
 .controller('ProductDetailCtrl', function($scope, $stateParams, Products) {
-  Products.get($stateParams.productId).then(function(response) {
-    $scope.product = response.data;
-  },
-  function(error) {
-    console.log(error);
+  $scope.$on('$ionicView.enter', function() {
+    Products.get($stateParams.productId).then(function(response) {
+      $scope.product = response.data;
+    },
+    function(error) {
+      console.log(error);
+    });
   });
 })
 
-.controller('ProductCreateCtrl', function($scope, Products) {
+.controller('ProductCreateCtrl', function($scope, $state, Products) {
   $scope.product = {
     Name: '',
     Description: '',
@@ -40,6 +41,7 @@ angular.module('starter.controllers', [])
     Products.create($scope.product)
     .then(function() {
       console.log("product was created successfully")
+      $state.transitionTo('tab.products');
     },
     function(error) {
       console.log(error);
@@ -59,7 +61,7 @@ angular.module('starter.controllers', [])
     Products.edit($stateParams.productId, $scope.product)
     .then(function() {
       console.log("product was edited successfully")
-      $state.transitionTo('tab.product-detail', {productId: $stateParams.productId}, {reload: true, cache: false});
+      $state.transitionTo('tab.product-detail', {productId: $stateParams.productId});
     },
     function(error) {
       console.log(error);
