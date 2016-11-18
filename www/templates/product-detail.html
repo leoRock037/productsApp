@@ -20,9 +20,14 @@
     </p>
 
 
-    <a class="button button-large button-positive" href="#/tab/products/edit/{{product.Id}}">
-      Edit
-    </a>
+    <div class="button-bar">
+      <a class="button button-large button-positive" href="#/tab/products/edit/{{product.Id}}">
+        Edit
+      </a>
+      <a class="button button-large button-assertive" ng-click="remove(product.Id)">
+        Delete
+      </a>
+    </div>
 
   </ion-content>
 </ion-view>

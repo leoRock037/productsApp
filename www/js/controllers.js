@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('ProductsCtrl', function($scope, Products) {
+.controller('ProductsCtrl', function($scope, $state, Products) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -17,9 +17,17 @@ angular.module('starter.controllers', [])
       console.log(error);
     });
   });
+
+  $scope.remove = function(productId) {
+    Products.delete(productId)
+      .then(function() {
+        console.log('product removed successfully');
+        $state.reload();
+      });
+  }
 })
 
-.controller('ProductDetailCtrl', function($scope, $stateParams, Products) {
+.controller('ProductDetailCtrl', function($scope, $state, $stateParams, Products) {
   $scope.$on('$ionicView.enter', function() {
     Products.get($stateParams.productId).then(function(response) {
       $scope.product = response.data;
@@ -28,6 +36,14 @@ angular.module('starter.controllers', [])
       console.log(error);
     });
   });
+
+  $scope.remove = function(productId) {
+    Products.delete(productId)
+      .then(function() {
+        console.log('product removed successfully');
+        $state.transitionTo('tab.products');
+      });
+  }
 })
 
 .controller('ProductCreateCtrl', function($scope, $state, Products) {

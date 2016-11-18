@@ -2,13 +2,27 @@
   <ion-content>
     <ion-item href="#/tab/products/new">
       <button class="button button-large button-positive">
-        Large Button
+        Create
       </button>
     </ion-item>
 
     <ion-list>
-      <ion-item class="item-remove-animate" ng-repeat="product in products" type="item-text-wrap" href="#/tab/products/{{product.Id}}">
-        <h2>{{product.Name}}</h2>
+      <ion-item class="item-remove-animate" ng-repeat="product in products" type="item-text-wrap" >
+      <div class="row">
+         <div class="col col-75">
+            <h2>{{product.Name}}</h2>
+          </div>
+         <div class="col">
+            <div class="button-bar">
+              <a class="button" href="#/tab/products/{{product.Id}}">
+                <i class="icon ion-edit"></i>
+              </a>
+              <a class="button" ng-click="remove(product.Id)">
+                <i class="icon ion-trash-a"></i>
+              </a>
+            </div>
+         </div>
+       </div>
       </ion-item>
     </ion-list>
   </ion-content>

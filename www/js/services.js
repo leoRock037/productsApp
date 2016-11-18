@@ -32,6 +32,13 @@ angular.module('starter.services', [])
         url: ENDPOINT_URL+productId,
         data: product
       });
+    },
+
+    delete: function(productId, product) {
+      return $http({
+        method: 'DELETE',
+        url: ENDPOINT_URL+productId,
+      });
     }
   };
 });
